@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="2"
-  DTS:VersionGUID="{0EF4FB44-7651-4972-91D0-B0E141A04883}">
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{C8D2A114-91F8-41CA-8CC8-0F906D6FCBCE}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -39,7 +39,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Custid"
-              DTS:DTSID="{5C9B06D3-E9C6-4791-81CA-C2F529E4DE67}"
+              DTS:DTSID="{ADDD4277-5F9D-438B-97BD-1D0EB0BC4D28}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -48,7 +48,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Name"
-              DTS:DTSID="{46C3915C-9BA1-4DBB-BD05-2BF6382F486A}"
+              DTS:DTSID="{73B5BE30-FF83-41AB-A8D9-87BF839D7F6E}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -57,7 +57,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="ShortName"
-              DTS:DTSID="{B9AD08D3-F43F-40AD-B625-D2A18501D002}"
+              DTS:DTSID="{DA091CC9-42F2-412C-B95E-A5501193481C}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -423,13 +423,13 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="175,42"
-          Id="Package\Load CSV File int DB\CustomerFile Source"
-          TopLeft="506,242" />
-        <NodeLayout
           Size="141,42"
           Id="Package\Load CSV File int DB\Load Into DB"
           TopLeft="507,440" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Load CSV File int DB\CustomerFile Source"
+          TopLeft="506,242" />
         <EdgeLayout
           Id="Package\Load CSV File int DB.Paths[Flat File Source Output]"
           TopLeft="593.5,284">

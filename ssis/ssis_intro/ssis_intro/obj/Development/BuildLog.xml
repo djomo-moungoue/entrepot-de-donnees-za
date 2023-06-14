@@ -2,18 +2,23 @@
 <BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>ssis_intro</Name>
-    <LastWriteTime>2023-06-13T14:33:34.1619517Z</LastWriteTime>
+    <LastWriteTime>2023-06-14T19:02:20.582315Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
       <Name>Package.dtsx</Name>
-      <LastWriteTime>2023-06-12T20:47:18.5245511Z</LastWriteTime>
+      <LastWriteTime>2023-06-14T06:49:11.5806628Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Package1.dtsx</Name>
-      <LastWriteTime>2023-06-13T14:33:33.7489871Z</LastWriteTime>
+      <LastWriteTime>2023-06-14T05:46:29.206698Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>V6 Transformation.dtsx</Name>
+      <LastWriteTime>2023-06-14T19:01:07.5453856Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>
