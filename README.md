@@ -95,6 +95,7 @@ Le `traitement des transactions en ligne - eng. Online Transaction Processing (O
 
 Une `table de faits (ce que vous voulez analyser) - eng. fact table` contient des mesures ainsi que des clés étrangères de référence pour les tables de dimensions. Ces tables sont généralement des tables de transaction du système OLTP. Cependant, une `table de dimension (par laquelle vous voulez analyser)` est une entité commerciale qui possède ses propres attributs et cette table est liée au fait. Il s'agit généralement de tables de référence ou de tables de consultation dans le système OLTP.
 
+Un `schéma en flocon de neige - eng. snow flake schema` est un `schéma en étoile - eng. star schema` dans lequel la table des faits n'est pas directement liées à toutes les tables de dimension.
 
 `DAX (Data Analysis Expressions)` est le langage utilisé dans Power BI pour créer des formules et ainsi compléter un modèle de données pour répondre à une analyse.
 
