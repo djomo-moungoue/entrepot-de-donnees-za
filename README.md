@@ -68,8 +68,15 @@ Pourquoi avons nous besoins d'un entrepôt de données?
 - Pour améliorer la qualité des données en nettoyant ceux ci lors de l'importation dans l'entrepôt de données
 - Parce que c'est une technologie qui a fait ses preuves.
 
-## Expliquer l'architecture d'un entrepôt de données
+`SQL Server Integration Services (SSIS)` est un sevice d'extraction, transformation et chargement de données ETL (Extract Transform Load) qui permet de se connecter à n'importe quelle source de données (Excel, fichier plat csv, XML, base de données, etc.). 
 
+`SQL Server Analysis Services (SSAS)` est une composante importante de la suite d'intelligence d'affaires (BI) proposée par Microsoft permettant de créer des cubes OLAP pouvant être exploités par différents outils de forage, d'exploration de données et de tableaux de bord.
+
+`DAX (Data Analysis Expressions)` est le langage utilisé dans Power BI pour créer des formules et ainsi compléter un modèle de données pour répondre à une analyse.
+
+## Expliquer l'architecture d'un entrepôt de données
+![L'architecture d'un entrepôt de données](images/bi_architecture_analytics_with_naqs.png)
+Le diagramme ci-dessus illustre l'architecture classique des entrepôts de données dans les entreprises. Partant de la gauche vers la droite, nous avons diverses sources hétéroges qui contiennent les données par rapport aux activités d'une entreprise pendant une période de temps données. Nous utiliserons Microsoft Visual Studio Data Tool for Visual Studio 2017 pour préparer ces données en d'autres termes pour extraire ces données, les transformer en données exploitables par les outils d'analyse et les charger dans une base de données SQL Server 2017 (SQL). Cette étape s'appelle l'intégration des données (ETL / SSIS). Par la suite nous allons modeliser ces données dans SQL Server (SSAS). About de la chaine de traitement nous allons donc utiliser Microsoft Power BI pour créer des rapports et des tableaux de bord pertinent pour les présenter à nos utilisateurs finaux (DAX).
 
 ## Définir les termes techniques usuels
 ## Etudier un cas pratique à l'aide du jeux de données "Adventure works"
@@ -83,7 +90,7 @@ Pourquoi avons nous besoins d'un entrepôt de données?
 SSIS - SQL Server Integration Services
 
 SSIS est un outil qui sert lors de la préparation des données à extraire, transformer et charger les données dans les projet d'entrepôts de données, des projets de migration des données ou dans les activités de maintenance des données.
-![BI Architecture](images/bi_architecture_analytics_with_naqs.png)
+
 
 SQL Server Data Tools permet de créer les projets SSIS, SSAS et SSRS.
 
