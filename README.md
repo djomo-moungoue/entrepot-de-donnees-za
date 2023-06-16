@@ -1,12 +1,13 @@
-# Construire votre Entrepôt de Données de A à Z
+# Bien comprendre et implémenter votre Entrepôt de Données de A à Z
 
 ## Configuer votre Environnement de Développement
 
-Composants de l'environnement de travails
+Composants de mon environnement de travail
 1. Microsoft Windows 10 Professionnel
 2. SQL Server Data Tool for Visual Studio 2017 (SSDT 2017)
 3. SQL Server Developper Edition
 4. SQL Server Management Studio
+5. Git et GitHub
 
 ### [Installer SQL Server Data Tool for Visual Studio 2017 (SSDT 2017)](https://en.dirceuresende.com/blog/como-corrigir-erro-na-instalacao-do-sql-server-data-tools-ssdt-2017-setup-failed-incorrect-function-0x80070001/)
 
@@ -68,17 +69,23 @@ Pourquoi avons nous besoins d'un entrepôt de données?
 - Pour améliorer la qualité des données en nettoyant ceux ci lors de l'importation dans l'entrepôt de données
 - Parce que c'est une technologie qui a fait ses preuves.
 
-`SQL Server Integration Services (SSIS)` est un sevice d'extraction, transformation et chargement de données ETL (Extract Transform Load) qui permet de se connecter à n'importe quelle source de données (Excel, fichier plat csv, XML, base de données, etc.). 
+`SQL Server Integration Services (SSIS)` est un sevice d'extraction, transformation et chargement de données ETL (Extract Transform Load) qui permet de se connecter à n'importe quelle source de données (Excel, fichier plat csv, XML, base de données, etc.). Tandis que `ETL (Extract Transform Load)` est utilisé pour les solution d'entrepôts de données dans les locaux de l'entreprise, `ELT (Extract Load Transform)` est utilisé pour les solution de lac des données dans les technologies cloud.
+![ETL vs ELT](images/etl_vs_elt.png)
 
 `SQL Server Analysis Services (SSAS)` est une composante importante de la suite d'intelligence d'affaires (BI) proposée par Microsoft permettant de créer des cubes OLAP pouvant être exploités par différents outils de forage, d'exploration de données et de tableaux de bord.
 
 `DAX (Data Analysis Expressions)` est le langage utilisé dans Power BI pour créer des formules et ainsi compléter un modèle de données pour répondre à une analyse.
 
 ## Expliquer l'architecture d'un entrepôt de données
-![L'architecture d'un entrepôt de données](images/bi_architecture_analytics_with_naqs.png)
-Le diagramme ci-dessus illustre l'architecture classique des entrepôts de données dans les entreprises. Partant de la gauche vers la droite, nous avons diverses sources hétéroges qui contiennent les données par rapport aux activités d'une entreprise pendant une période de temps données. Nous utiliserons Microsoft Visual Studio Data Tool for Visual Studio 2017 pour préparer ces données en d'autres termes pour extraire ces données, les transformer en données exploitables par les outils d'analyse et les charger dans une base de données SQL Server 2017 (SQL). Cette étape s'appelle l'intégration des données (ETL / SSIS). Par la suite nous allons modeliser ces données dans SQL Server (SSAS). About de la chaine de traitement nous allons donc utiliser Microsoft Power BI pour créer des rapports et des tableaux de bord pertinent pour les présenter à nos utilisateurs finaux (DAX).
 
-## Définir les termes techniques usuels
+### L'Architecture conventionnelle
+![L'architecture d'un entrepôt de données conventionnel](images/bi_architecture_analytics_with_naqs.png)
+Le diagramme ci-dessus illustre l'architecture classique des entrepôts de données dans les entreprises. Partant de la gauche vers la droite, nous avons diverses sources hétéroges qui contiennent les données par rapport aux activités d'une entreprise pendant une période de temps données. Nous utiliserons Microsoft Visual Studio Data Tool for Visual Studio 2017 pour préparer ces données en d'autres termes pour extraire ces données, les transformer en données exploitables par les outils d'analyse et les charger dans une base de données SQL Server 2017 (SQL). Cette étape s'appelle l'intégration des données (ETL / SSIS). Par la suite nous allons construire notre modèle tabulaire (recommandé par microsoft car suffisant pour la majorité des tâches) ou multidimentionnel de ces données dans SQL Server (SSAS). About de la chaine de traitement nous allons donc utiliser Microsoft Power BI pour créer des rapports et des tableaux de bord (DAX) pertinents pour les mettre à disposition de nos utilisateurs finaux qui les consommeront à travers leurs navigateurs web ou leurs smartphone.
+
+### L'Architecture moderne
+![L'architecture d'un entrepôt de données moderne](images/mordern_datawarehouse_architecture_analytics_with_naqs_.png)
+Nous constatons ici le flux de tâches à effectuer reste identique entre cette architecture et de la précédente tandis que les outils utilisés diffères. Le traitement des données dans un entrepôt de données moderne se fait essentiellement dans le cloud parce que les sources de données sont aussi stocées dans des espaces cloud.
+
 ## Etudier un cas pratique à l'aide du jeux de données "Adventure works"
 ## Modéliser un entrepôt de données
 ## Implémenter un entrepôt de données
