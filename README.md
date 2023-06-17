@@ -4,10 +4,11 @@
 
 Composants de mon environnement de travail
 1. Microsoft Windows 10 Professionnel
-2. SQL Server Data Tool for Visual Studio 2017 (SSDT 2017)
-3. SQL Server Developper Edition
-4. SQL Server Management Studio
-5. Git et GitHub
+2. Microsft SQL Server Developper 2019 
+3. Microsoft SQL Server Management Studio 19.1
+4. Microsoft SQL Server Data Tool for Visual Studio 2017 (SSDT 2017)
+5. Microsoft Power BI Desktop
+6. Git et GitHub
 
 ### [Installer SQL Server Data Tool for Visual Studio 2017 (SSDT 2017)](https://en.dirceuresende.com/blog/como-corrigir-erro-na-instalacao-do-sql-server-data-tools-ssdt-2017-setup-failed-incorrect-function-0x80070001/)
 
@@ -187,8 +188,18 @@ SELECT TOP (3) *
 FROM [AdventureWorks2014].[Sales].[Currency]
 ~~~
 
-
 ## Implémenter un entrepôt de données
+
+### Description des étapes à suivre
+
+![Les étapes d'implémentations](images/implementation_steps.PNG)
+Créer les bases de données: Lors de la creation des objets de base données nous pourrions créer la base de données de zone de transit et la base de données de l'entrepôt de données sur le même serveur pour avoir une architecture simple. Nous pouvons aussi les créer sur des serveurs différents pour avoir un architecture complexe mais robustesse.
+
+Charger les données de la source á la zone de transit
+
+Migrer les données de la zone de transit vers l'entrepôt de données
+
+
 ## Extraire Transformer et Charger les données (SSIS)
 ## Analyser les données (SSAS)
 ## Planifier les tâches (Power BI)
