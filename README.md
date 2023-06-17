@@ -145,11 +145,27 @@ Analyser les données contenues dans les différentes tables pour de comprendre 
 ### Modéliser les Datamarts par secteur d'activités de l'entreprise
 
 Modéliser le datamart des ventes (sales)
-![Datamart des ventes](datamart_sales.PNG)
-Il se compose des éléments impliqués dans un processus de vente. Autrement dit qui? (le client) a acheter quoi? (un produit) quand? (une date données) où? (un lieu géographique) par quel moyen? (en utilisant une monnaie données)
+![Datamart des ventes](images/datamart_sales.PNG)
+Il se compose des éléments impliqués dans un processus de vente et contient une table de fait pour les ventes en ligne (FactInternetSales) et l'autre pour les ventes sur site (FactResellerSales). 
+FactInternetSales (FactResellerSales)
+- DimCustomer (DimReseller)
+- DimProduct
+- DimDate
+- DimTerritory
+- DimCurrency
+
 ~~~sql
+--- Autrement dit qui? (le client final ou le revendeur) a acheter quoi? (un produit) quand? (une date données) où? (un lieu géographique) par quel moyen? (en utilisant une monnaie données)
+
+--- Vente en ligne
 SELECT TOP (1) *
 FROM [AdventureWorks2014].[Sales].[SalesOrderHeader]
+WHERE OnlineOrderFlag = 1
+
+--- Vente sur site
+SELECT TOP (1) *
+FROM [AdventureWorks2014].[Sales].[SalesOrderHeader]
+WHERE OnlineOrderFlag = 0
 
 SELECT *
 FROM [AdventureWorks2014].[Sales].[Customer]
