@@ -95,13 +95,50 @@ Le `traitement des transactions en ligne - eng. Online Transaction Processing (O
 
 Une `table de faits (ce que vous voulez analyser) - eng. fact table` contient des mesures ainsi que des clés étrangères de référence pour les tables de dimensions. Ces tables sont généralement des tables de transaction du système OLTP. Cependant, une `table de dimension (par laquelle vous voulez analyser)` est une entité commerciale qui possède ses propres attributs et cette table est liée au fait. Il s'agit généralement de tables de référence ou de tables de consultation dans le système OLTP.
 
+L'objectif principal d'un schéma en étoile dans la conception d'un entrepôt de données est de construire une modélisation dimensionnelle. Le schéma en étoile découle de la conversion du modèle de relation entre entités du système OLTP afin de pouvois d'être utilisé dans systèmes OLAP pour accroite la vittesse des requêtes lors de la création des rapports. Cette conversion s'effectue en groupant toutes les tables de transactions pour former une table de fait contenant des attributs. Chaque attribut est une clée étrangére décrit par une table dimension associée.
+
 Un `schéma en flocon de neige - eng. snow flake schema` est un `schéma en étoile - eng. star schema` dans lequel la table des faits n'est pas directement liées à toutes les tables de dimension.
 
 `DAX (Data Analysis Expressions)` est le langage utilisé dans Power BI pour créer des formules et ainsi compléter un modèle de données pour répondre à une analyse.
 
 ## Etudier un cas pratique à l'aide du jeux de données "Adventure works"
+
+"Adventure Works" est une entreprise multinationale de fabrication présentant les caractéristiques suivantes :
+- Elle est répartie en 3 groupes, 6 régions et 10 territoires.
+- Elle vend des produits répartis en 4 catégories, plus de 30 sous-catégories et plus de 500 produits.
+- Elle compte plus de 15 000 clients.
+- Elle est repartie en plusieurs départements parmi lesquels: achats et production, ressources humaines et ventes.
+
+"Adventure Works" nous a chargé de lui construire un entrepôt de données robuste.
+
 ## Modéliser un entrepôt de données
+
+Quelques questions d'orientation
+- Comment fonctionne le processus d'entreprise?
+- Quel est le système source?
+- Quelles sont les attentes de l'entreprise?
+- Quels sont les différents domaines d'activité?
+- Quels sont les faits de l'entreprise?
+- Quels sont les dimensions de l'entreprise?
+- Quel est la la granularité de chaque noeud dans le système?
+
 ## Implémenter un entrepôt de données
+
+Téléchargeons le backup du système OLTP de l'entreprise "AdventureWorks2014" sur le GitHub officiel de Microsoft [AdventureWorks sample databases](https://github.com/Microsoft/sql-server-samples/releases/tag/adventureworks) et le sauvegarder temporairement dans le dossier "Downloads"
+
+Naviguons dna le dossier C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\
+Copions et collons le fichier backup dans le sous-dossier "Backup"
+
+Utilisons SQL Server Management Studio (SSMS) pour restaurer ce backup dans SQL Server Developer Edition. Etapes à suivre:
+- Nous nous connectons à la base de données en utilisant vos identifiant Windows
+- Nous faisons un click droit sur "Databases" et choisir "Restore Database"
+- Dans la boîte de dialogue ouvert, nous choisissons l'option "Device" afin de sélectionner le fichier backup précédemment sauvegardé sur notre machine.
+- Clickons sur "Vérifions Backup Media"
+- Clickons "OK"
+![Restore Backup Media in SQL Server](images/restore_backup_media.PNG)
+![Restore Backup Media in SQL Server](images/restore_backup_media2.PNG)
+
+
 ## Extraire Transformer et Charger les données (SSIS)
 ## Analyser les données (SSAS)
 ## Planifier les tâches (Power BI)
