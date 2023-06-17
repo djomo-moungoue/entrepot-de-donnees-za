@@ -199,6 +199,8 @@ Charger les données de la source à la zone de transit. Migrer les données de 
 
 
 ## Extraire Transformer et Charger les données (SSIS)
+
+### Créer le schéma de la zone de transit
 Inspirons nous des l'architecture de nos datamarts et du schéma des tables correspondantes (ainsi que les tables associées par une clée étrangère) dans notre source afin de créer le schéma des tables de notre base de données de zone de transit. Suivons ces étapes pour extraire tous les schémas souhaités sous forme de script que nous allons modifier par la suite. 
 - Clicke droit sur notre base de données source "AdventureWorks2014" > "Task" > "Generate script..." > "Next"
 - Choisir l'option "Select specific database objects"
@@ -239,6 +241,10 @@ FactInternetSales (FactResellerSales) 2
     - TerritoryID
 - DimCurrency 13
 ![ngenmbhi staging demo](images/ngenmbhi_staging_demo.PNG)
+
+### Créer le schéma l'entrepôt de données
+![ngenmbhi datawarehousing demo](images/ngenmbhi_datawarehousing_demo.PNG)
+
 
 ## Analyser les données (SSAS)
 ## Planifier les tâches (Power BI)
