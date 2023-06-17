@@ -84,7 +84,9 @@ Nous constatons ici le flux de tâches à effectuer reste identique entre cette 
 `SQL Server Integration Services (SSIS)` est un sevice d'extraction, transformation et chargement de données ETL (Extract Transform Load) qui permet de se connecter à n'importe quelle source de données (Excel, fichier plat csv, XML, base de données, etc.). Tandis que `ETL (Extract Transform Load)` est utilisé pour les solution d'entrepôts de données dans les locaux de l'entreprise, `ELT (Extract Load Transform)` est utilisé pour les solution de lac des données dans les technologies cloud.
 ![ETL vs ELT](images/etl_vs_elt.png)
 
-Une `zone de transit - eng. staging` est une zone de stockage intermédiaire utilisée pour le traitement des données au cours du processus d'extraction, de transformation et de chargement (ETL). La zone de mise à disposition des données se situe entre la ou les sources de données et la ou les cibles de données, qui sont souvent des entrepôts de données (DW), des marteaux de données (DM) ou d'autres référentiels de données.
+Une `zone de transit - eng. staging` est une zone de stockage intermédiaire utilisée pour le traitement des données au cours du processus d'extraction, de transformation et de chargement (ETL). La zone de mise à disposition des données se situe entre la ou les sources de données et la ou les cibles de données, qui sont souvent des entrepôts de données (DW), des datamarts (DM) ou d'autres référentiels de données.
+
+Un `datamart` est un sous-ensemble d’un entrepôt de données destiné à fournir des données aux utilisateurs, et souvent spécialisé vers un groupe ou un type d'affaire.
 
 Un `magasin de données opérationnelles - eng. operational data store (ODS)` est une base de données centrale qui fournit un instantané des données les plus récentes provenant de plusieurs systèmes transactionnels pour l'établissement de rapports opérationnels. Un cas pratique est l'architecture master-slave d'une base de données opérationnelle qui permet de repliquer la base de données principale en temps réel afin de permettre aux utilisateurs finaux d'exécuter leurs rapports sur un base de données secondaire de tel sorte que les activités opérationnnelles ne soientt pas perturbées.
 ![Staging vs ODS](images/etl_vs_elt.png)
@@ -114,15 +116,15 @@ Un `schéma en flocon de neige - eng. snow flake schema` est un `schéma en éto
 ## Modéliser un entrepôt de données
 
 Quelques questions d'orientation
+- Quel est le système source? -> AdventureWorks2014
 - Comment fonctionne le processus d'entreprise?
-- Quel est le système source?
-- Quelles sont les attentes de l'entreprise?
-- Quels sont les différents domaines d'activité?
-- Quels sont les faits de l'entreprise?
-- Quels sont les dimensions de l'entreprise?
-- Quel est la la granularité de chaque noeud dans le système?
+- Quelles sont les attentes de l'entreprise? 
+- Quels sont les différents domaines d'activité? -> les ventes et le ressources humaines
+- Quels sont les faits de l'entreprise? -> les ventes et le ressources humaines
+- Quels sont les dimensions de l'entreprise? -> les dimensions confirmées, les dimensions du moteur de stockage, les dimensions du jeu de rôle
+- Quel est la la granularité de chaque noeud dans le système? -> granularité des quotidiens par produit et par employer
 
-## Implémenter un entrepôt de données
+### Restaurer la sauvegarde du système OLTP "AdventureWorks2014" da la base de données
 
 Téléchargeons le backup du système OLTP de l'entreprise "AdventureWorks2014" sur le GitHub officiel de Microsoft [AdventureWorks sample databases](https://github.com/Microsoft/sql-server-samples/releases/tag/adventureworks) et le sauvegarder temporairement dans le dossier "Downloads"
 
@@ -138,7 +140,39 @@ Utilisons SQL Server Management Studio (SSMS) pour restaurer ce backup dans SQL 
 ![Restore Backup Media in SQL Server](images/restore_backup_media.PNG)
 ![Restore Backup Media in SQL Server](images/restore_backup_media2.PNG)
 
+Analyser les données contenues dans les différentes tables pour de comprendre l'architecture du système source.
 
+### Modéliser les Datamarts par secteur d'activités de l'entreprise
+
+Modéliser le datamart des ventes (sales)
+![Datamart des ventes](datamart_sales.PNG)
+Il se compose des éléments impliqués dans un processus de vente. Autrement dit qui? (le client) a acheter quoi? (un produit) quand? (une date données) où? (un lieu géographique) par quel moyen? (en utilisant une monnaie données)
+~~~sql
+SELECT TOP (1) *
+FROM [AdventureWorks2014].[Sales].[SalesOrderHeader]
+
+SELECT *
+FROM [AdventureWorks2014].[Sales].[Customer]
+WHERE CustomerID = 29825
+
+SELECT *
+FROM [AdventureWorks2014].[Production].[Product]
+WHERE ProductID IN (
+SELECT ProductID
+FROM [AdventureWorks2014].[Sales].[SalesOrderDetail]
+WHERE SalesOrderID = 43659
+)
+
+SELECT *
+FROM [AdventureWorks2014].[Sales].[SalesTerritory]
+WHERE TerritoryID = 5
+
+SELECT TOP (3) *
+FROM [AdventureWorks2014].[Sales].[Currency]
+~~~
+
+
+## Implémenter un entrepôt de données
 ## Extraire Transformer et Charger les données (SSIS)
 ## Analyser les données (SSAS)
 ## Planifier les tâches (Power BI)
