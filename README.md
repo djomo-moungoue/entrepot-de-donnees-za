@@ -4,9 +4,9 @@
 
 Composants de mon environnement de travail
 1. Microsoft Windows 10 Professionnel
-2. Microsft SQL Server Developper 2019 
-3. Microsoft SQL Server Management Studio 19.1
-4. Microsoft SQL Server Data Tool for Visual Studio 2017 (SSDT 2017)
+2. Microsft SQL Server Developper 2019 (DBMS)
+3. Microsoft SQL Server Management Studio 19.1 (SSMS)
+4. Microsoft SQL Server Data Tool for Visual Studio 2017 (SSIS, SSAS)
 5. Microsoft Power BI Desktop
 6. Git et GitHub
 
@@ -193,14 +193,53 @@ FROM [AdventureWorks2014].[Sales].[Currency]
 ### Description des étapes à suivre
 
 ![Les étapes d'implémentations](images/implementation_steps.PNG)
-Créer les bases de données: Lors de la creation des objets de base données nous pourrions créer la base de données de zone de transit et la base de données de l'entrepôt de données sur le même serveur pour avoir une architecture simple. Nous pouvons aussi les créer sur des serveurs différents pour avoir un architecture complexe mais robustesse.
+Créer les bases de données: Lors de la creation des objets de base données nous pourrions créer la base de données de zone de transit et la base de données de l'entrepôt de données sur le même serveur pour avoir une architecture simple ou sur différents serveurs en fonction des exigences de l'entreprise.
 
-Charger les données de la source á la zone de transit
-
-Migrer les données de la zone de transit vers l'entrepôt de données
+Charger les données de la source à la zone de transit. Migrer les données de la zone de transit vers l'entrepôt de données. Créer les modèles tablulaires. créer les rapports dans Power BI Desktop.
 
 
 ## Extraire Transformer et Charger les données (SSIS)
+Inspirons nous des l'architecture de nos datamarts et du schéma des tables correspondantes (ainsi que les tables associées par une clée étrangère) dans notre source afin de créer le schéma des tables de notre base de données de zone de transit. Suivons ces étapes pour extraire tous les schémas souhaités sous forme de script que nous allons modifier par la suite. 
+- Clicke droit sur notre base de données source "AdventureWorks2014" > "Task" > "Generate script..." > "Next"
+- Choisir l'option "Select specific database objects"
+- Dérouler "Tables" et choisir les tables souhaitées
+- Clicker "Next"
+- Choisir l'option "Save as a script" et choisir l'enplacement de sauvegarde.
+- Clicker "Next" 2 fois pour exécuter le script
+- Clicker "Open" pour ovrir le script dans SSMS afin de l'adapter à nos besoins
+
+FactInternetSales (FactResellerSales) 2
+- SalesOrderID
+- OnlineOrderFlag
+- CustomerID 3
+- SalesPersonID 4
+- TerritoryID 5
+- BillToAddressID 6
+- rowguid
+- ModifiedDate 
+- DimCustomer (DimReseller)
+    - CustomerID (PK)
+    - PersonID (FK)
+        - BusinessEntityID (PK) 8
+        - TerritoryID (FK)
+        - rowguid
+        - ModifiedDate
+    - StoreID (FK) 9
+    - TerritoryID (FK)
+    - rowguid
+    - ModifiedDate
+- DimProduct 10
+    - ProductID
+    - ProductSubcategoryID 11
+    - ProductModelID 12
+    - rowguid
+    - ModifiedDate
+- DimDate 7
+- DimTerritory
+    - TerritoryID
+- DimCurrency 13
+![ngenmbhi staging demo](images/ngenmbhi_staging_demo.PNG)
+
 ## Analyser les données (SSAS)
 ## Planifier les tâches (Power BI)
 ## Conclure
