@@ -1,6 +1,6 @@
-# Bien comprendre et implémenter votre Entrepôt de Données de A à Z
+# Bien modéliser et implémenter votre Entrepôt de Données de A à Z
 
-## Configuer votre Environnement de Développement
+## Configurons notre Environnement de Développement
 
 Composants de mon environnement de travail
 1. Microsoft Windows 10 Professionnel
@@ -10,7 +10,7 @@ Composants de mon environnement de travail
 5. Microsoft Power BI Desktop
 6. Git et GitHub
 
-### [Installer SQL Server Data Tool for Visual Studio 2017 (SSDT 2017)](https://en.dirceuresende.com/blog/como-corrigir-erro-na-instalacao-do-sql-server-data-tools-ssdt-2017-setup-failed-incorrect-function-0x80070001/)
+### [Installons SQL Server Data Tool for Visual Studio 2017 (SSDT 2017)](https://en.dirceuresende.com/blog/como-corrigir-erro-na-instalacao-do-sql-server-data-tools-ssdt-2017-setup-failed-incorrect-function-0x80070001/)
 
 Télécharger SSDT 2017 (SSDT-Setup-ENU.exe) ici https://go.microsoft.com/fwlink/?linkid=2169967&WT.mc_id=DP-MVP-5003166
 
@@ -70,7 +70,7 @@ Pourquoi avons nous besoins d'un entrepôt de données?
 - Pour améliorer la qualité des données en nettoyant ceux ci lors de l'importation dans l'entrepôt de données
 - Parce que c'est une technologie qui a fait ses preuves.
 
-## Expliquer l'architecture d'un entrepôt de données
+## Expliquons l'architecture d'un entrepôt de données
 
 ### L'Architecture conventionnelle
 ![L'architecture d'un entrepôt de données conventionnel](images/bi_architecture_analytics_with_naqs.png)
@@ -80,7 +80,7 @@ Le diagramme ci-dessus illustre l'architecture classique des entrepôts de donn�
 ![L'architecture d'un entrepôt de données moderne](images/mordern_datawarehouse_architecture_analytics_with_naqs_.png)
 Nous constatons ici le flux de tâches à effectuer reste identique entre cette architecture et de la précédente tandis que les outils utilisés diffères. Le traitement des données dans un entrepôt de données moderne se fait essentiellement dans le cloud parce que les sources de données sont aussi stocées dans des espaces cloud.
 
-### Définir les termes techniques usuels
+### Définissons les termes techniques usuels
 
 `SQL Server Integration Services (SSIS)` est un sevice d'extraction, transformation et chargement de données ETL (Extract Transform Load) qui permet de se connecter à n'importe quelle source de données (Excel, fichier plat csv, XML, base de données, etc.). Tandis que `ETL (Extract Transform Load)` est utilisé pour les solution d'entrepôts de données dans les locaux de l'entreprise, `ELT (Extract Load Transform)` est utilisé pour les solution de lac des données dans les technologies cloud.
 ![ETL vs ELT](images/etl_vs_elt.png)
@@ -104,7 +104,7 @@ Un `schéma en flocon de neige - eng. snow flake schema` est un `schéma en éto
 
 `DAX (Data Analysis Expressions)` est le langage utilisé dans Power BI pour créer des formules et ainsi compléter un modèle de données pour répondre à une analyse.
 
-## Etudier un cas pratique à l'aide du jeux de données "Adventure works"
+## Etudions un cas pratique à l'aide du jeux de données "Adventure works"
 
 "Adventure Works" est une entreprise multinationale de fabrication présentant les caractéristiques suivantes :
 - Elle est répartie en 3 groupes, 6 régions et 10 territoires.
@@ -114,7 +114,7 @@ Un `schéma en flocon de neige - eng. snow flake schema` est un `schéma en éto
 
 "Adventure Works" nous a chargé de lui construire un entrepôt de données robuste.
 
-## Modéliser un entrepôt de données
+## Modélisons l'entrepôt de données
 
 Quelques questions d'orientation
 - Quel est le système source? -> AdventureWorks2014
@@ -125,7 +125,7 @@ Quelques questions d'orientation
 - Quels sont les dimensions de l'entreprise? -> les dimensions confirmées, les dimensions du moteur de stockage, les dimensions du jeu de rôle
 - Quel est la la granularité de chaque noeud dans le système? -> granularité des quotidiens par produit et par employer
 
-### Restaurer la sauvegarde du système OLTP "AdventureWorks2014" da la base de données
+### Restaurons la sauvegarde du système OLTP "AdventureWorks2014" da la base de données
 
 Téléchargeons le backup du système OLTP de l'entreprise "AdventureWorks2014" sur le GitHub officiel de Microsoft [AdventureWorks sample databases](https://github.com/Microsoft/sql-server-samples/releases/tag/adventureworks) et le sauvegarder temporairement dans le dossier "Downloads"
 
@@ -143,7 +143,7 @@ Utilisons SQL Server Management Studio (SSMS) pour restaurer ce backup dans SQL 
 
 Analyser les données contenues dans les différentes tables pour de comprendre l'architecture du système source.
 
-### Modéliser les Datamarts par secteur d'activités de l'entreprise
+### Modélisons les Datamarts par secteur d'activités de l'entreprise
 
 Modéliser le datamart des ventes (sales)
 ![Datamart des ventes](images/datamart_sales.PNG)
@@ -188,7 +188,7 @@ SELECT TOP (3) *
 FROM [AdventureWorks2014].[Sales].[Currency]
 ~~~
 
-## Implémenter un entrepôt de données
+## Implémentons l'entrepôt de données
 
 ### Description des étapes à suivre
 
@@ -198,9 +198,9 @@ Créer les bases de données: Lors de la creation des objets de base données no
 Charger les données de la source à la zone de transit. Migrer les données de la zone de transit vers l'entrepôt de données. Créer les modèles tablulaires. créer les rapports dans Power BI Desktop.
 
 
-## Extraire Transformer et Charger les données (SSIS)
+## Extrayons Transformons et Chargeons les données (SSIS)
 
-### Créer le schéma de la zone de transit
+### Créons le schéma de la zone de transit
 Inspirons nous des l'architecture de nos datamarts et du schéma des tables correspondantes (ainsi que les tables associées par une clée étrangère) dans notre source afin de créer le schéma des tables de notre base de données de zone de transit. Suivons ces étapes pour extraire tous les schémas souhaités sous forme de script que nous allons modifier par la suite. 
 - Clicke droit sur notre base de données source "AdventureWorks2014" > "Task" > "Generate script..." > "Next"
 - Choisir l'option "Select specific database objects"
@@ -242,38 +242,16 @@ FactInternetSales (FactResellerSales) 2
 - DimCurrency 13
 ![ngenmbhi staging demo](images/ngenmbhi_staging_demo.PNG)
 
-### Créer le schéma l'entrepôt de données
+### Créons le schéma l'entrepôt de données
 ![ngenmbhi datawarehousing demo](images/ngenmbhi_datawarehousing_demo.PNG)
 
-### Migrer les données dans la base de données de zone de transit
+### Migrons les données dans la base de données de zone de transit
 ![](images/SSIS_ERP_Incremental_Staging.png)
 ![](images/SSIS_ERP_Full_Staging.png)
 ![](images/SSIS_HR_Full_Staging.png)
 
-## Analyser les données (SSAS)
-## Planifier les tâches (Power BI)
-## Conclure
+## Analysons les données (SSAS)
+## Planifions les tâches (Power BI)
+## Clôturons notre projet
 
-SSIS - SQL Server Integration Services
-
-SSIS est un outil qui sert lors de la préparation des données à extraire, transformer et charger les données dans les projet d'entrepôts de données, des projets de migration des données ou dans les activités de maintenance des données.
-
-
-SQL Server Data Tools permet de créer les projets SSIS, SSAS et SSRS.
-
-## Créer un Flux de Données
-Migrer les données d'un ficheier CSV dans une base de données SQL Server en utilisant Microsoft Visual Studio (SSDT) et SQL Server Management Service (SSMS)
-
-Processuss chronologique:
-- Créer une connection vers la source Flat File afin de connecter un fichier CSV
-- Créer une base de données qui servira de destination (SSMS)
-- Creéer une connection ver la base de données
-- Définir les flux des données de la source vers la destination
-- Créer une table à partir des données chargées
-- Rafraichir la base de donnée afin de charge la trable vide nouvellement créée (SSMS)
-- Exécuter le flux de contrôle afin de charger les données dens la table de la base de données
-
-Liens utiles:
-- [SSDT for Visual Studio (VS) 2017 - Intallation Hors Ligne](https://learn.microsoft.com/en-us/sql/ssdt/previous-releases-of-sql-server-data-tools-ssdt-and-ssdt-bi?view=sql-server-ver16#ssdt-for-visual-studio-vs-2017)
-- [Intallation Hors Ligne avec images d'illustration](https://en.dirceuresende.com/blog/como-corrigir-erro-na-instalacao-do-sql-server-data-tools-ssdt-2017-setup-failed-incorrect-function-0x80070001/)
 
