@@ -246,6 +246,9 @@ FactInternetSales (FactResellerSales) 2
 ![ngenmbhi datawarehousing demo](images/ngenmbhi_datawarehousing_demo.PNG)
 
 ### Migrer les données dans la base de données de zone de transit
+![](images/SSIS_ERP_Incremental_Staging.png)
+![](images/SSIS_ERP_Full_Staging.png)
+![](images/SSIS_HR_Full_Staging.png)
 
 ## Analyser les données (SSAS)
 ## Planifier les tâches (Power BI)

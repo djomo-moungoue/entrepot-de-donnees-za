@@ -15,7 +15,7 @@
       <SSIS:Project SSIS:ProtectionLevel="EncryptSensitiveWithUserKey" xmlns:SSIS="www.microsoft.com/SqlServer/SSIS">
         <SSIS:Properties>
           <SSIS:Property SSIS:Name="ID">{53462537-0bec-4178-8b94-5e7406848f84}</SSIS:Property>
-          <SSIS:Property SSIS:Name="Name">SSSIS_Staging</SSIS:Property>
+          <SSIS:Property SSIS:Name="Name">SSSIS_AdventureWorks2014_OLTP_Staging</SSIS:Property>
           <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
           <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
           <SSIS:Property SSIS:Name="VersionBuild">0</SSIS:Property>
@@ -26,14 +26,14 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">LAPTOP-NGENMBHI</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAg2D/uIMpqkuudV3msVUX0QAAAAACAAAAAAAQZgAAAAEAACAAAAChCLB9+e4oLsnA25vSxZyJCiGaXI2CgK8VB91WobfM9QAAAAAOgAAAAAIAACAAAAA86YQhdtg73cxuqAiMgLcdPzln2Pbr0FxapqqM32don5AAAACIn2TDSqV/paobZlVXmSGztwBj55eMnzWrRiZ5RZBpjODyHAFucc8XTYdv08bH9MNhn+KzNcyaRCIClGivBxhGyxFQuBqkQKyte+nghmYbmyZq77aeCr2CFUOBcaHigbponabDozrztne04rKGrI5ZZymsLSKaiUYqxZ3ZuuJAanZ85rPFp/kbHq2a65gh7cxAAAAA1Ue5VcxMRzZ8mi9KHLlWWCXFnTUsgq14JDuoJe35hIiGsc+gd1BXJ4HdYKHaiEN3vGxBsaiVlbesekrkjDNtEw==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAg2D/uIMpqkuudV3msVUX0QAAAAACAAAAAAAQZgAAAAEAACAAAAA9+AZITddFpVxdqiWBro0xtrskxfnaUM3OyS6y6eYsnAAAAAAOgAAAAAIAACAAAADm36L5AZJ+vcXdbi3gx2art0n7ghMNWk0StV59lODeBJAAAAAnngm8ktpdRR9KnedF/iu5knngWQcC+a14pCDM+OVw2B6a0I2l0CbMdufLjOEN/hjI0jNMN/G24o0O7WfOVcMIDbGCChDyLjV0ubYals5GEDioG1OP6DvkRwdU0vVbO7bH7KFG7KJ78y9lM1ICFvkkKcoLQf5/2oOKQmEhNwcprS++lw4j8nVu+mKueBswrMZAAAAAeAFgB0tiRaYAiedPxH5g6vkJo4JHZVUOcJ+6paHBv4N2YjMyFDxihoCYPrBtAI5y0KCKoAe5hKp6jioNT+e95A==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
           <SSIS:Package SSIS:Name="SSIS_Staging_full.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="SSIS_ERP_Increment.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="SSIS_HR_Staging.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="SSIS_ERP_Staging.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="SSIS_ERP_Incremental_Staging.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="SSIS_ERP_Full_Staging.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="SSIS_HR_Full_Staging.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers />
         <SSIS:DeploymentInfo>
@@ -353,16 +353,16 @@
                 </SSIS:Parameter>
               </SSIS:Parameters>
             </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="SSIS_ERP_Increment.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="SSIS_ERP_Incremental_Staging.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{EF6CE6E7-72B1-4321-ACBB-6AB0EFC27807}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">SSIS_ERP_Increment</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{21A5BFD1-A24F-4295-875D-62B5F92EFE10}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">SSIS_ERP_Incremental_Staging</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">3</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">6</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{858E6249-D7C4-438F-B024-F8FB72AA30E5}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{6CFF13E3-4FAC-411E-B4A8-14B0A5D03473}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -667,16 +667,16 @@
                 </SSIS:Parameter>
               </SSIS:Parameters>
             </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="SSIS_HR_Staging.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="SSIS_ERP_Full_Staging.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{2B91C8AD-0990-48A6-A746-0AEC36F79565}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">SSIS_HR_Staging</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{A1D231EF-14C0-4600-9D58-C3054E66BFFB}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">SSIS_ERP_Full_Staging</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">29</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">32</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{BE206817-9618-4EFB-80C2-F65D1C95097C}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{3FB52EE6-7487-4CC1-B872-B2BAD6BC7BA0}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -981,16 +981,16 @@
                 </SSIS:Parameter>
               </SSIS:Parameters>
             </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="SSIS_ERP_Staging.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="SSIS_HR_Full_Staging.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{742D48BF-8041-47A1-BB24-AAAA0ADA3655}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">SSIS_ERP_Staging</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{78368F0F-02BB-446E-9714-CB942D0F1807}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">SSIS_HR_Full_Staging</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">30</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">31</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{4852E545-33A7-42B3-AAEC-389292781E02}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{6B376F9C-DD99-406D-9285-C1B7AF808347}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
