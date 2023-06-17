@@ -240,6 +240,7 @@ FactInternetSales (FactResellerSales) 2
 - DimTerritory
     - TerritoryID
 - DimCurrency 13
+
 ![ngenmbhi staging demo](images/ngenmbhi_staging_demo.PNG)
 
 ### Créons le schéma l'entrepôt de données
