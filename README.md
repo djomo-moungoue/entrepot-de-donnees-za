@@ -89,7 +89,7 @@ Une `zone de transit - eng. staging` est une zone de stockage intermédiaire uti
 Un `datamart` est un sous-ensemble d’un entrepôt de données destiné à fournir des données aux utilisateurs, et souvent spécialisé vers un groupe ou un type d'affaire.
 
 Un `magasin de données opérationnelles - eng. operational data store (ODS)` est une base de données centrale qui fournit un instantané des données les plus récentes provenant de plusieurs systèmes transactionnels pour l'établissement de rapports opérationnels. Un cas pratique est l'architecture master-slave d'une base de données opérationnelle qui permet de repliquer la base de données principale en temps réel afin de permettre aux utilisateurs finaux d'exécuter leurs rapports sur un base de données secondaire de tel sorte que les activités opérationnnelles ne soientt pas perturbées.
-![Staging vs ODS](images/etl_vs_elt.png)
+![Staging vs ODS](images/staging_vs_ods.png)
 
 `SQL Server Analysis Services (SSAS)` est une composante importante de la suite d'intelligence d'affaires (BI) proposée par Microsoft permettant de créer des cubes OLAP pouvant être exploités par différents outils de forage, d'exploration de données et de tableaux de bord.
 
