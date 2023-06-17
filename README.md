@@ -245,6 +245,7 @@ FactInternetSales (FactResellerSales) 2
 ### Créer le schéma l'entrepôt de données
 ![ngenmbhi datawarehousing demo](images/ngenmbhi_datawarehousing_demo.PNG)
 
+### Migrer les données dans la base de données de zone de transit
 
 ## Analyser les données (SSAS)
 ## Planifier les tâches (Power BI)

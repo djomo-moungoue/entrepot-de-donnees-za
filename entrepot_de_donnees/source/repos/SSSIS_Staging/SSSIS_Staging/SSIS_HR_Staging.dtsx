@@ -1,0 +1,2461 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/17/2023 7:53:21 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-NGENMBHI"
+  DTS:CreatorName="LAPTOP-NGENMBHI\Admin"
+  DTS:DTSID="{2B91C8AD-0990-48A6-A746-0AEC36F79565}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.180"
+  DTS:LocaleID="5132"
+  DTS:ObjectName="SSIS_HR_Staging"
+  DTS:PackageType="5"
+  DTS:VersionBuild="29"
+  DTS:VersionGUID="{BE206817-9618-4EFB-80C2-F65D1C95097C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-NGENMBHI.AdventureWorks2014]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{224A0C39-14C7-4CA1-8E8E-F549B54C82EC}"
+      DTS:ObjectName="LAPTOP-NGENMBHI.AdventureWorks2014">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=LAPTOP-NGENMBHI;Initial Catalog=AdventureWorks2014;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-NGENMBHI.AWN_STG_Demo]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{EEEB2D9E-9E37-4708-B211-BA3193544A12}"
+      DTS:ObjectName="LAPTOP-NGENMBHI.AWN_STG_Demo">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=LAPTOP-NGENMBHI;Initial Catalog=AWN_STG_Demo;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\HR Schema"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{3B79D67E-DC30-41EA-BFB5-30DC0B306772}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="HR Schema">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\HR Schema\Employee"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{97AC54C2-6D36-4C81-9D69-2813FE7FBFE0}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Employee">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\HR Schema\Employee\Load Employee Data"
+              DTS:CreationName="Microsoft.Pipeline"
+              DTS:Description="Tâche de flux de données"
+              DTS:DTSID="{6165A56D-A095-456F-9280-F403675A7ABC}"
+              DTS:ExecutableType="Microsoft.Pipeline"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Load Employee Data"
+              DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <pipeline
+                  version="1">
+                  <components>
+                    <component
+                      refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB"
+                      componentClassID="Microsoft.OLEDBDestination"
+                      contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+                      description="Destination OLE DB"
+                      name="Destination OLE DB"
+                      usesDispositions="true"
+                      version="4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                          name="OpenRowset">[hr].[Employee]</property>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="Commande SQL à exécuter."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie le mode utilisé pour accéder à la base de données."
+                          name="AccessMode"
+                          typeConverter="AccessMode">0</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                          name="FastLoadKeepIdentity">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                          name="FastLoadKeepNulls">false</property>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                          name="FastLoadOptions"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                          name="FastLoadMaxInsertCommitSize">2147483647</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Connections[OleDbConnection]"
+                          connectionManagerID="Package.ConnectionManagers[LAPTOP-NGENMBHI.AWN_STG_Demo]"
+                          connectionManagerRefId="Package.ConnectionManagers[LAPTOP-NGENMBHI.AWN_STG_Demo]"
+                          description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                          name="OleDbConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+                          errorOrTruncationOperation="Insérer"
+                          errorRowDisposition="FailComponent"
+                          hasSideEffects="true"
+                          name="Entrée de destination OLE DB">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[ModifiedDate]"
+                              cachedDataType="dbTimeStamp"
+                              cachedName="ModifiedDate"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[ModifiedDate]"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[ModifiedDate]" />
+                            <inputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[rowguid]"
+                              cachedDataType="guid"
+                              cachedName="rowguid"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[rowguid]"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[rowguid]" />
+                            <inputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[SSISTrackId]"
+                              cachedDataType="i8"
+                              cachedName="SSISTrackId"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[SSISTrackId]"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Set SSISTrackId.Outputs[Sortie de colonne dérivée].Columns[SSISTrackId]" />
+                            <inputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Created_Dt]"
+                              cachedDataType="date"
+                              cachedName="Created_Dt"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Created_Dt]"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Set SSISTrackId.Outputs[Sortie de colonne dérivée].Columns[Created_Dt]" />
+                            <inputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[BusinessEntityID]"
+                              cachedDataType="i4"
+                              cachedName="BusinessEntityID"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[BusinessEntityID]"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[BusinessEntityID]" />
+                            <inputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[NationalIDNumber]"
+                              cachedDataType="wstr"
+                              cachedLength="15"
+                              cachedName="NationalIDNumber"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[NationalIDNumber]"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[NationalIDNumber]" />
+                            <inputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[LoginID]"
+                              cachedDataType="wstr"
+                              cachedLength="256"
+                              cachedName="LoginID"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[LoginID]"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[LoginID]" />
+                            <inputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[OrganizationNode]"
+                              cachedDataType="bytes"
+                              cachedLength="892"
+                              cachedName="OrganizationNode"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[OrganizationNode]"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[OrganizationNode]" />
+                            <inputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[OrganizationLevel]"
+                              cachedDataType="i2"
+                              cachedName="OrganizationLevel"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[OrganizationLevel]"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[OrganizationLevel]" />
+                            <inputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[JobTitle]"
+                              cachedDataType="wstr"
+                              cachedLength="50"
+                              cachedName="JobTitle"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[JobTitle]"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[JobTitle]" />
+                            <inputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[BirthDate]"
+                              cachedDataType="dbDate"
+                              cachedName="BirthDate"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[BirthDate]"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[BirthDate]" />
+                            <inputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[MaritalStatus]"
+                              cachedDataType="wstr"
+                              cachedLength="1"
+                              cachedName="MaritalStatus"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[MaritalStatus]"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[MaritalStatus]" />
+                            <inputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Gender]"
+                              cachedDataType="wstr"
+                              cachedLength="1"
+                              cachedName="Gender"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Gender]"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Gender]" />
+                            <inputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[HireDate]"
+                              cachedDataType="dbDate"
+                              cachedName="HireDate"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[HireDate]"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[HireDate]" />
+                            <inputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[SalariedFlag]"
+                              cachedDataType="bool"
+                              cachedName="SalariedFlag"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[SalariedFlag]"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[SalariedFlag]" />
+                            <inputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[VacationHours]"
+                              cachedDataType="i2"
+                              cachedName="VacationHours"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[VacationHours]"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[VacationHours]" />
+                            <inputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[SickLeaveHours]"
+                              cachedDataType="i2"
+                              cachedName="SickLeaveHours"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[SickLeaveHours]"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[SickLeaveHours]" />
+                            <inputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[CurrentFlag]"
+                              cachedDataType="bool"
+                              cachedName="CurrentFlag"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[CurrentFlag]"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[CurrentFlag]" />
+                          </inputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[ModifiedDate]"
+                              dataType="dbTimeStamp"
+                              name="ModifiedDate" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[rowguid]"
+                              dataType="guid"
+                              name="rowguid" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Created_Dt]"
+                              dataType="dbTimeStamp"
+                              name="Created_Dt" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[SSISTrackId]"
+                              dataType="i4"
+                              name="SSISTrackId" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[BusinessEntityID]"
+                              dataType="i4"
+                              name="BusinessEntityID" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[NationalIDNumber]"
+                              dataType="wstr"
+                              length="15"
+                              name="NationalIDNumber" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[LoginID]"
+                              dataType="wstr"
+                              length="256"
+                              name="LoginID" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[OrganizationNode]"
+                              dataType="bytes"
+                              length="892"
+                              name="OrganizationNode" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[OrganizationLevel]"
+                              dataType="i2"
+                              name="OrganizationLevel" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[JobTitle]"
+                              dataType="wstr"
+                              length="50"
+                              name="JobTitle" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[BirthDate]"
+                              dataType="dbDate"
+                              name="BirthDate" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[MaritalStatus]"
+                              dataType="wstr"
+                              length="1"
+                              name="MaritalStatus" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Gender]"
+                              dataType="wstr"
+                              length="1"
+                              name="Gender" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[HireDate]"
+                              dataType="dbDate"
+                              name="HireDate" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[SalariedFlag]"
+                              dataType="bool"
+                              name="SalariedFlag" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[VacationHours]"
+                              dataType="i2"
+                              name="VacationHours" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[SickLeaveHours]"
+                              dataType="i2"
+                              name="SickLeaveHours" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[CurrentFlag]"
+                              dataType="bool"
+                              name="CurrentFlag" />
+                          </externalMetadataColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Sortie d'erreur de destination OLE DB"
+                          synchronousInputId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\HR Schema\Employee\Load Employee Data\Set SSISTrackId"
+                      componentClassID="Microsoft.DerivedColumn"
+                      contactInfo="Colonne dérivée;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+                      description="Crée de nouvelles valeurs de colonne en appliquant des expressions aux colonnes d'entrée de transformation. Créez de nouvelles colonnes ou remplacez celles qui existent déjà. Par exemple, concaténez les valeurs de la colonne 'prénom' et de la colonne 'nom' pour créer une colonne 'nom complet'."
+                      name="Set SSISTrackId"
+                      usesDispositions="true">
+                      <inputs>
+                        <input
+                          refId="Package\HR Schema\Employee\Load Employee Data\Set SSISTrackId.Inputs[Entrée de colonne dérivée]"
+                          description="Entrée de la transformation de colonnes dérivées"
+                          name="Entrée de colonne dérivée">
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\HR Schema\Employee\Load Employee Data\Set SSISTrackId.Outputs[Sortie de colonne dérivée]"
+                          description="Sortie par défaut de la transformation de colonnes dérivées"
+                          exclusionGroup="1"
+                          name="Sortie de colonne dérivée"
+                          synchronousInputId="Package\HR Schema\Employee\Load Employee Data\Set SSISTrackId.Inputs[Entrée de colonne dérivée]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Set SSISTrackId.Outputs[Sortie de colonne dérivée].Columns[SSISTrackId]"
+                              dataType="i8"
+                              errorOrTruncationOperation="Calcul"
+                              errorRowDisposition="FailComponent"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Set SSISTrackId.Outputs[Sortie de colonne dérivée].Columns[SSISTrackId]"
+                              name="SSISTrackId"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Expression de colonne dérivée"
+                                  name="Expression">@[System::ServerExecutionID]</property>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Expression claire de colonne dérivée"
+                                  expressionType="Notify"
+                                  name="FriendlyExpression">@[System::ServerExecutionID]</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Set SSISTrackId.Outputs[Sortie de colonne dérivée].Columns[Created_Dt]"
+                              dataType="date"
+                              errorOrTruncationOperation="Calcul"
+                              errorRowDisposition="FailComponent"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Set SSISTrackId.Outputs[Sortie de colonne dérivée].Columns[Created_Dt]"
+                              name="Created_Dt"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Expression de colonne dérivée"
+                                  name="Expression">@[System::CreationDate]</property>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Expression claire de colonne dérivée"
+                                  expressionType="Notify"
+                                  name="FriendlyExpression">@[System::CreationDate]</property>
+                              </properties>
+                            </outputColumn>
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\HR Schema\Employee\Load Employee Data\Set SSISTrackId.Outputs[Sortie d'erreur de colonne dérivée]"
+                          description="Sortie d'erreur de la transformation de colonnes dérivées"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Sortie d'erreur de colonne dérivée"
+                          synchronousInputId="Package\HR Schema\Employee\Load Employee Data\Set SSISTrackId.Inputs[Entrée de colonne dérivée]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Set SSISTrackId.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Set SSISTrackId.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Set SSISTrackId.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Set SSISTrackId.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB"
+                      componentClassID="Microsoft.OLEDBSource"
+                      contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+                      description="Source OLE DB"
+                      name="Source OLE DB"
+                      usesDispositions="true"
+                      version="7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                          name="OpenRowset">[HumanResources].[Employee]</property>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="Commande SQL à exécuter."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                        <property
+                          dataType="System.String"
+                          description="Variable contenant la commande SQL à exécuter."
+                          name="SqlCommandVariable"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie le mode utilisé pour accéder à la base de données."
+                          name="AccessMode"
+                          typeConverter="AccessMode">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Mappages entre les paramètres de la commande SQL et les variables."
+                          name="ParameterMapping"></property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Connections[OleDbConnection]"
+                          connectionManagerID="Package.ConnectionManagers[LAPTOP-NGENMBHI.AdventureWorks2014]"
+                          connectionManagerRefId="Package.ConnectionManagers[LAPTOP-NGENMBHI.AdventureWorks2014]"
+                          description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                          name="OleDbConnection" />
+                      </connections>
+                      <outputs>
+                        <output
+                          refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB]"
+                          name="Sortie de source OLE DB">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[ModifiedDate]"
+                              dataType="dbTimeStamp"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[ModifiedDate]"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[ModifiedDate]"
+                              name="ModifiedDate"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[rowguid]"
+                              dataType="guid"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[rowguid]"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[rowguid]"
+                              name="rowguid"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[BusinessEntityID]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[BusinessEntityID]"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[BusinessEntityID]"
+                              name="BusinessEntityID"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[NationalIDNumber]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[NationalIDNumber]"
+                              length="15"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[NationalIDNumber]"
+                              name="NationalIDNumber"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[LoginID]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[LoginID]"
+                              length="256"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[LoginID]"
+                              name="LoginID"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[OrganizationNode]"
+                              dataType="bytes"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[OrganizationNode]"
+                              length="892"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[OrganizationNode]"
+                              name="OrganizationNode"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[OrganizationLevel]"
+                              dataType="i2"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[OrganizationLevel]"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[OrganizationLevel]"
+                              name="OrganizationLevel"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[JobTitle]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[JobTitle]"
+                              length="50"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[JobTitle]"
+                              name="JobTitle"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[BirthDate]"
+                              dataType="dbDate"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[BirthDate]"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[BirthDate]"
+                              name="BirthDate"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[MaritalStatus]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[MaritalStatus]"
+                              length="1"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[MaritalStatus]"
+                              name="MaritalStatus"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Gender]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[Gender]"
+                              length="1"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Gender]"
+                              name="Gender"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[HireDate]"
+                              dataType="dbDate"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[HireDate]"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[HireDate]"
+                              name="HireDate"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[SalariedFlag]"
+                              dataType="bool"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[SalariedFlag]"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[SalariedFlag]"
+                              name="SalariedFlag"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[VacationHours]"
+                              dataType="i2"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[VacationHours]"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[VacationHours]"
+                              name="VacationHours"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[SickLeaveHours]"
+                              dataType="i2"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[SickLeaveHours]"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[SickLeaveHours]"
+                              name="SickLeaveHours"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[CurrentFlag]"
+                              dataType="bool"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[CurrentFlag]"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[CurrentFlag]"
+                              name="CurrentFlag"
+                              truncationRowDisposition="FailComponent" />
+                          </outputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[ModifiedDate]"
+                              dataType="dbTimeStamp"
+                              name="ModifiedDate" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[rowguid]"
+                              dataType="guid"
+                              name="rowguid" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[BusinessEntityID]"
+                              dataType="i4"
+                              name="BusinessEntityID" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[NationalIDNumber]"
+                              dataType="wstr"
+                              length="15"
+                              name="NationalIDNumber" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[LoginID]"
+                              dataType="wstr"
+                              length="256"
+                              name="LoginID" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[OrganizationNode]"
+                              dataType="bytes"
+                              length="892"
+                              name="OrganizationNode" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[OrganizationLevel]"
+                              dataType="i2"
+                              name="OrganizationLevel" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[JobTitle]"
+                              dataType="wstr"
+                              length="50"
+                              name="JobTitle" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[BirthDate]"
+                              dataType="dbDate"
+                              name="BirthDate" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[MaritalStatus]"
+                              dataType="wstr"
+                              length="1"
+                              name="MaritalStatus" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[Gender]"
+                              dataType="wstr"
+                              length="1"
+                              name="Gender" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[HireDate]"
+                              dataType="dbDate"
+                              name="HireDate" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[SalariedFlag]"
+                              dataType="bool"
+                              name="SalariedFlag" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[VacationHours]"
+                              dataType="i2"
+                              name="VacationHours" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[SickLeaveHours]"
+                              dataType="i2"
+                              name="SickLeaveHours" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[CurrentFlag]"
+                              dataType="bool"
+                              name="CurrentFlag" />
+                          </externalMetadataColumns>
+                        </output>
+                        <output
+                          refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB]"
+                          isErrorOut="true"
+                          name="Sortie d'erreur de source OLE DB">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[BusinessEntityID]"
+                              dataType="i4"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[BusinessEntityID]"
+                              name="BusinessEntityID" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[NationalIDNumber]"
+                              dataType="wstr"
+                              length="15"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[NationalIDNumber]"
+                              name="NationalIDNumber" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[LoginID]"
+                              dataType="wstr"
+                              length="256"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[LoginID]"
+                              name="LoginID" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[OrganizationNode]"
+                              dataType="bytes"
+                              length="892"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[OrganizationNode]"
+                              name="OrganizationNode" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[OrganizationLevel]"
+                              dataType="i2"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[OrganizationLevel]"
+                              name="OrganizationLevel" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[JobTitle]"
+                              dataType="wstr"
+                              length="50"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[JobTitle]"
+                              name="JobTitle" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[BirthDate]"
+                              dataType="dbDate"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[BirthDate]"
+                              name="BirthDate" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[MaritalStatus]"
+                              dataType="wstr"
+                              length="1"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[MaritalStatus]"
+                              name="MaritalStatus" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[Gender]"
+                              dataType="wstr"
+                              length="1"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[Gender]"
+                              name="Gender" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[HireDate]"
+                              dataType="dbDate"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[HireDate]"
+                              name="HireDate" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[SalariedFlag]"
+                              dataType="bool"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[SalariedFlag]"
+                              name="SalariedFlag" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[VacationHours]"
+                              dataType="i2"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[VacationHours]"
+                              name="VacationHours" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[SickLeaveHours]"
+                              dataType="i2"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[SickLeaveHours]"
+                              name="SickLeaveHours" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[CurrentFlag]"
+                              dataType="bool"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[CurrentFlag]"
+                              name="CurrentFlag" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[rowguid]"
+                              dataType="guid"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[rowguid]"
+                              name="rowguid" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ModifiedDate]"
+                              dataType="dbTimeStamp"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ModifiedDate]"
+                              name="ModifiedDate" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                  </components>
+                  <paths>
+                    <path
+                      refId="Package\HR Schema\Employee\Load Employee Data.Paths[Sortie de colonne dérivée]"
+                      endId="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+                      name="Sortie de colonne dérivée"
+                      startId="Package\HR Schema\Employee\Load Employee Data\Set SSISTrackId.Outputs[Sortie de colonne dérivée]" />
+                    <path
+                      refId="Package\HR Schema\Employee\Load Employee Data.Paths[Sortie de source OLE DB]"
+                      endId="Package\HR Schema\Employee\Load Employee Data\Set SSISTrackId.Inputs[Entrée de colonne dérivée]"
+                      name="Sortie de source OLE DB"
+                      startId="Package\HR Schema\Employee\Load Employee Data\Source OLE DB.Outputs[Sortie de source OLE DB]" />
+                  </paths>
+                </pipeline>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\HR Schema\Employee\Truncate Employee Data"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Tâche d'exécution de requêtes SQL"
+              DTS:DTSID="{59B0DAF0-2D71-45E0-A408-1471BB34D101}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Truncate Employee Data"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{EEEB2D9E-9E37-4708-B211-BA3193544A12}"
+                  SQLTask:SqlStatementSource="TRUNCATE TABLE [AWN_STG_Demo].[hr].[Employee]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\HR Schema\Employee.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{6DB52608-A98D-4383-BB38-A5A6EAD2E5CC}"
+              DTS:From="Package\HR Schema\Employee\Truncate Employee Data"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\HR Schema\Employee\Load Employee Data" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\HR Schema\EmployeeDepartmentHistory"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{4F393360-0318-44EC-95A8-AF9A28625962}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EmployeeDepartmentHistory">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data"
+              DTS:CreationName="Microsoft.Pipeline"
+              DTS:Description="Tâche de flux de données"
+              DTS:DTSID="{912365F4-2168-4039-AF52-66AD9F52BFC5}"
+              DTS:ExecutableType="Microsoft.Pipeline"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Load EmployeeDepartmentHistory Data"
+              DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <pipeline
+                  version="1">
+                  <components>
+                    <component
+                      refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB"
+                      componentClassID="Microsoft.OLEDBDestination"
+                      contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+                      description="Destination OLE DB"
+                      name="Destination OLE DB"
+                      usesDispositions="true"
+                      version="4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                          name="OpenRowset">[hr].[EmployeeDepartmentHistory]</property>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="Commande SQL à exécuter."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie le mode utilisé pour accéder à la base de données."
+                          name="AccessMode"
+                          typeConverter="AccessMode">0</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                          name="FastLoadKeepIdentity">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                          name="FastLoadKeepNulls">false</property>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                          name="FastLoadOptions"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                          name="FastLoadMaxInsertCommitSize">2147483647</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Connections[OleDbConnection]"
+                          connectionManagerID="Package.ConnectionManagers[LAPTOP-NGENMBHI.AWN_STG_Demo]"
+                          connectionManagerRefId="Package.ConnectionManagers[LAPTOP-NGENMBHI.AWN_STG_Demo]"
+                          description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                          name="OleDbConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+                          errorOrTruncationOperation="Insérer"
+                          errorRowDisposition="FailComponent"
+                          hasSideEffects="true"
+                          name="Entrée de destination OLE DB">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[ModifiedDate]"
+                              cachedDataType="dbTimeStamp"
+                              cachedName="ModifiedDate"
+                              externalMetadataColumnId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[ModifiedDate]"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[ModifiedDate]" />
+                            <inputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[SSISTrackId]"
+                              cachedDataType="i8"
+                              cachedName="SSISTrackId"
+                              externalMetadataColumnId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[SSISTrackId]"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Set SSISTrackId.Outputs[Sortie de colonne dérivée].Columns[SSISTrackId]" />
+                            <inputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Created_Dt]"
+                              cachedDataType="date"
+                              cachedName="Created_Dt"
+                              externalMetadataColumnId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Created_Dt]"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Set SSISTrackId.Outputs[Sortie de colonne dérivée].Columns[Created_Dt]" />
+                            <inputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[BusinessEntityID]"
+                              cachedDataType="i4"
+                              cachedName="BusinessEntityID"
+                              externalMetadataColumnId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[BusinessEntityID]"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[BusinessEntityID]" />
+                            <inputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[DepartmentID]"
+                              cachedDataType="i2"
+                              cachedName="DepartmentID"
+                              externalMetadataColumnId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[DepartmentID]"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[DepartmentID]" />
+                            <inputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[ShiftID]"
+                              cachedDataType="ui1"
+                              cachedName="ShiftID"
+                              externalMetadataColumnId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[ShiftID]"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[ShiftID]" />
+                            <inputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[StartDate]"
+                              cachedDataType="dbDate"
+                              cachedName="StartDate"
+                              externalMetadataColumnId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[StartDate]"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[StartDate]" />
+                            <inputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[EndDate]"
+                              cachedDataType="dbDate"
+                              cachedName="EndDate"
+                              externalMetadataColumnId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[EndDate]"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[EndDate]" />
+                            <inputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Name]"
+                              cachedDataType="wstr"
+                              cachedLength="50"
+                              cachedName="Name"
+                              externalMetadataColumnId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[DepartmentName]"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Name]" />
+                          </inputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[ModifiedDate]"
+                              dataType="dbTimeStamp"
+                              name="ModifiedDate" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Created_Dt]"
+                              dataType="dbTimeStamp"
+                              name="Created_Dt" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[SSISTrackId]"
+                              dataType="i4"
+                              name="SSISTrackId" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[BusinessEntityID]"
+                              dataType="i4"
+                              name="BusinessEntityID" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[DepartmentID]"
+                              dataType="i2"
+                              name="DepartmentID" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[ShiftID]"
+                              dataType="ui1"
+                              name="ShiftID" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[StartDate]"
+                              dataType="dbDate"
+                              name="StartDate" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[EndDate]"
+                              dataType="dbDate"
+                              name="EndDate" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[DepartmentName]"
+                              dataType="wstr"
+                              length="50"
+                              name="DepartmentName" />
+                          </externalMetadataColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Sortie d'erreur de destination OLE DB"
+                          synchronousInputId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Set SSISTrackId"
+                      componentClassID="Microsoft.DerivedColumn"
+                      contactInfo="Colonne dérivée;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+                      description="Crée de nouvelles valeurs de colonne en appliquant des expressions aux colonnes d'entrée de transformation. Créez de nouvelles colonnes ou remplacez celles qui existent déjà. Par exemple, concaténez les valeurs de la colonne 'prénom' et de la colonne 'nom' pour créer une colonne 'nom complet'."
+                      name="Set SSISTrackId"
+                      usesDispositions="true">
+                      <inputs>
+                        <input
+                          refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Set SSISTrackId.Inputs[Entrée de colonne dérivée]"
+                          description="Entrée de la transformation de colonnes dérivées"
+                          name="Entrée de colonne dérivée">
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Set SSISTrackId.Outputs[Sortie de colonne dérivée]"
+                          description="Sortie par défaut de la transformation de colonnes dérivées"
+                          exclusionGroup="1"
+                          name="Sortie de colonne dérivée"
+                          synchronousInputId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Set SSISTrackId.Inputs[Entrée de colonne dérivée]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Set SSISTrackId.Outputs[Sortie de colonne dérivée].Columns[SSISTrackId]"
+                              dataType="i8"
+                              errorOrTruncationOperation="Calcul"
+                              errorRowDisposition="FailComponent"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Set SSISTrackId.Outputs[Sortie de colonne dérivée].Columns[SSISTrackId]"
+                              name="SSISTrackId"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Expression de colonne dérivée"
+                                  name="Expression">@[System::ServerExecutionID]</property>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Expression claire de colonne dérivée"
+                                  expressionType="Notify"
+                                  name="FriendlyExpression">@[System::ServerExecutionID]</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Set SSISTrackId.Outputs[Sortie de colonne dérivée].Columns[Created_Dt]"
+                              dataType="date"
+                              errorOrTruncationOperation="Calcul"
+                              errorRowDisposition="FailComponent"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Set SSISTrackId.Outputs[Sortie de colonne dérivée].Columns[Created_Dt]"
+                              name="Created_Dt"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Expression de colonne dérivée"
+                                  name="Expression">@[System::CreationDate]</property>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Expression claire de colonne dérivée"
+                                  expressionType="Notify"
+                                  name="FriendlyExpression">@[System::CreationDate]</property>
+                              </properties>
+                            </outputColumn>
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Set SSISTrackId.Outputs[Sortie d'erreur de colonne dérivée]"
+                          description="Sortie d'erreur de la transformation de colonnes dérivées"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Sortie d'erreur de colonne dérivée"
+                          synchronousInputId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Set SSISTrackId.Inputs[Entrée de colonne dérivée]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Set SSISTrackId.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Set SSISTrackId.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Set SSISTrackId.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Set SSISTrackId.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB"
+                      componentClassID="Microsoft.OLEDBSource"
+                      contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+                      description="Source OLE DB"
+                      name="Source OLE DB"
+                      usesDispositions="true"
+                      version="7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                          name="OpenRowset">[HumanResources].[EmployeeDepartmentHistory]</property>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="Commande SQL à exécuter."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT        edh.BusinessEntityID, edh.DepartmentID, edh.ShiftID, edh.StartDate, edh.EndDate, edh.ModifiedDate, d.Name
+FROM            HumanResources.EmployeeDepartmentHistory AS edh LEFT OUTER JOIN
+                         HumanResources.Department AS d ON edh.DepartmentID = d.DepartmentID</property>
+                        <property
+                          dataType="System.String"
+                          description="Variable contenant la commande SQL à exécuter."
+                          name="SqlCommandVariable"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie le mode utilisé pour accéder à la base de données."
+                          name="AccessMode"
+                          typeConverter="AccessMode">2</property>
+                        <property
+                          dataType="System.String"
+                          description="Mappages entre les paramètres de la commande SQL et les variables."
+                          name="ParameterMapping"></property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Connections[OleDbConnection]"
+                          connectionManagerID="Package.ConnectionManagers[LAPTOP-NGENMBHI.AdventureWorks2014]"
+                          connectionManagerRefId="Package.ConnectionManagers[LAPTOP-NGENMBHI.AdventureWorks2014]"
+                          description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                          name="OleDbConnection" />
+                      </connections>
+                      <outputs>
+                        <output
+                          refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB]"
+                          name="Sortie de source OLE DB">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[ModifiedDate]"
+                              dataType="dbTimeStamp"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[ModifiedDate]"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[ModifiedDate]"
+                              name="ModifiedDate"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[BusinessEntityID]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[BusinessEntityID]"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[BusinessEntityID]"
+                              name="BusinessEntityID"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[DepartmentID]"
+                              dataType="i2"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[DepartmentID]"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[DepartmentID]"
+                              name="DepartmentID"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[ShiftID]"
+                              dataType="ui1"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[ShiftID]"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[ShiftID]"
+                              name="ShiftID"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[StartDate]"
+                              dataType="dbDate"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[StartDate]"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[StartDate]"
+                              name="StartDate"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[EndDate]"
+                              dataType="dbDate"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[EndDate]"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[EndDate]"
+                              name="EndDate"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Name]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[Name]"
+                              length="50"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Name]"
+                              name="Name"
+                              truncationRowDisposition="FailComponent" />
+                          </outputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[ModifiedDate]"
+                              dataType="dbTimeStamp"
+                              name="ModifiedDate" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[BusinessEntityID]"
+                              dataType="i4"
+                              name="BusinessEntityID" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[DepartmentID]"
+                              dataType="i2"
+                              name="DepartmentID" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[ShiftID]"
+                              dataType="ui1"
+                              name="ShiftID" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[StartDate]"
+                              dataType="dbDate"
+                              name="StartDate" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[EndDate]"
+                              dataType="dbDate"
+                              name="EndDate" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[Name]"
+                              dataType="wstr"
+                              length="50"
+                              name="Name" />
+                          </externalMetadataColumns>
+                        </output>
+                        <output
+                          refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB]"
+                          isErrorOut="true"
+                          name="Sortie d'erreur de source OLE DB">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[BusinessEntityID]"
+                              dataType="i4"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[BusinessEntityID]"
+                              name="BusinessEntityID" />
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[DepartmentID]"
+                              dataType="i2"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[DepartmentID]"
+                              name="DepartmentID" />
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ShiftID]"
+                              dataType="ui1"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ShiftID]"
+                              name="ShiftID" />
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[StartDate]"
+                              dataType="dbDate"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[StartDate]"
+                              name="StartDate" />
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[EndDate]"
+                              dataType="dbDate"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[EndDate]"
+                              name="EndDate" />
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ModifiedDate]"
+                              dataType="dbTimeStamp"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ModifiedDate]"
+                              name="ModifiedDate" />
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[Name]"
+                              dataType="wstr"
+                              length="50"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[Name]"
+                              name="Name" />
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                  </components>
+                  <paths>
+                    <path
+                      refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data.Paths[Sortie de colonne dérivée]"
+                      endId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+                      name="Sortie de colonne dérivée"
+                      startId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Set SSISTrackId.Outputs[Sortie de colonne dérivée]" />
+                    <path
+                      refId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data.Paths[Sortie de source OLE DB]"
+                      endId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Set SSISTrackId.Inputs[Entrée de colonne dérivée]"
+                      name="Sortie de source OLE DB"
+                      startId="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB]" />
+                  </paths>
+                </pipeline>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\HR Schema\EmployeeDepartmentHistory\Truncate EmployeeDepartmentHistory Data"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Tâche d'exécution de requêtes SQL"
+              DTS:DTSID="{68B1888D-EA95-4AE7-B19E-539380F8A6C8}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Truncate EmployeeDepartmentHistory Data"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{EEEB2D9E-9E37-4708-B211-BA3193544A12}"
+                  SQLTask:SqlStatementSource="TRUNCATE TABLE [AWN_STG_Demo].[hr].[EmployeeDepartmentHistory]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\HR Schema\EmployeeDepartmentHistory.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{B6E8E222-4948-4B25-848F-6AC079E04552}"
+              DTS:From="Package\HR Schema\EmployeeDepartmentHistory\Truncate EmployeeDepartmentHistory Data"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\HR Schema\EmployeePayHistory"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{139EA83D-765E-4125-AC3D-52A829B9D3CC}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EmployeePayHistory">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data"
+              DTS:CreationName="Microsoft.Pipeline"
+              DTS:Description="Tâche de flux de données"
+              DTS:DTSID="{2563AD27-7459-4055-A893-8071705F754A}"
+              DTS:ExecutableType="Microsoft.Pipeline"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Load EmployeePayHistory Data"
+              DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <pipeline
+                  version="1">
+                  <components>
+                    <component
+                      refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Destination OLE DB"
+                      componentClassID="Microsoft.OLEDBDestination"
+                      contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+                      description="Destination OLE DB"
+                      name="Destination OLE DB"
+                      usesDispositions="true"
+                      version="4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                          name="OpenRowset">[hr].[EmployeePayHistory]</property>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="Commande SQL à exécuter."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie le mode utilisé pour accéder à la base de données."
+                          name="AccessMode"
+                          typeConverter="AccessMode">0</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                          name="FastLoadKeepIdentity">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                          name="FastLoadKeepNulls">false</property>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                          name="FastLoadOptions"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                          name="FastLoadMaxInsertCommitSize">2147483647</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Destination OLE DB.Connections[OleDbConnection]"
+                          connectionManagerID="Package.ConnectionManagers[LAPTOP-NGENMBHI.AWN_STG_Demo]"
+                          connectionManagerRefId="Package.ConnectionManagers[LAPTOP-NGENMBHI.AWN_STG_Demo]"
+                          description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                          name="OleDbConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+                          errorOrTruncationOperation="Insérer"
+                          errorRowDisposition="FailComponent"
+                          hasSideEffects="true"
+                          name="Entrée de destination OLE DB">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[ModifiedDate]"
+                              cachedDataType="dbTimeStamp"
+                              cachedName="ModifiedDate"
+                              externalMetadataColumnId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[ModifiedDate]"
+                              lineageId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[ModifiedDate]" />
+                            <inputColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[BusinessEntityID]"
+                              cachedDataType="i4"
+                              cachedName="BusinessEntityID"
+                              externalMetadataColumnId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[BusinessEntityID]"
+                              lineageId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[BusinessEntityID]" />
+                            <inputColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[RateChangeDate]"
+                              cachedDataType="dbTimeStamp"
+                              cachedName="RateChangeDate"
+                              externalMetadataColumnId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[RateChangeDate]"
+                              lineageId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[RateChangeDate]" />
+                            <inputColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Rate]"
+                              cachedDataType="cy"
+                              cachedName="Rate"
+                              externalMetadataColumnId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Rate]"
+                              lineageId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Rate]" />
+                            <inputColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[PayFrequency]"
+                              cachedDataType="ui1"
+                              cachedName="PayFrequency"
+                              externalMetadataColumnId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[PayFrequency]"
+                              lineageId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[PayFrequency]" />
+                          </inputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[ModifiedDate]"
+                              dataType="dbTimeStamp"
+                              name="ModifiedDate" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[BusinessEntityID]"
+                              dataType="i4"
+                              name="BusinessEntityID" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[RateChangeDate]"
+                              dataType="dbTimeStamp"
+                              name="RateChangeDate" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Rate]"
+                              dataType="cy"
+                              name="Rate" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[PayFrequency]"
+                              dataType="ui1"
+                              name="PayFrequency" />
+                          </externalMetadataColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Sortie d'erreur de destination OLE DB"
+                          synchronousInputId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Set SSISTrackId"
+                      componentClassID="Microsoft.DerivedColumn"
+                      contactInfo="Colonne dérivée;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+                      description="Crée de nouvelles valeurs de colonne en appliquant des expressions aux colonnes d'entrée de transformation. Créez de nouvelles colonnes ou remplacez celles qui existent déjà. Par exemple, concaténez les valeurs de la colonne 'prénom' et de la colonne 'nom' pour créer une colonne 'nom complet'."
+                      name="Set SSISTrackId"
+                      usesDispositions="true">
+                      <inputs>
+                        <input
+                          refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Set SSISTrackId.Inputs[Entrée de colonne dérivée]"
+                          description="Entrée de la transformation de colonnes dérivées"
+                          name="Entrée de colonne dérivée">
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Set SSISTrackId.Outputs[Sortie de colonne dérivée]"
+                          description="Sortie par défaut de la transformation de colonnes dérivées"
+                          exclusionGroup="1"
+                          name="Sortie de colonne dérivée"
+                          synchronousInputId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Set SSISTrackId.Inputs[Entrée de colonne dérivée]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Set SSISTrackId.Outputs[Sortie de colonne dérivée].Columns[SSISTrackId]"
+                              dataType="i8"
+                              errorOrTruncationOperation="Calcul"
+                              errorRowDisposition="FailComponent"
+                              lineageId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Set SSISTrackId.Outputs[Sortie de colonne dérivée].Columns[SSISTrackId]"
+                              name="SSISTrackId"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Expression de colonne dérivée"
+                                  name="Expression">@[System::ServerExecutionID]</property>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Expression claire de colonne dérivée"
+                                  expressionType="Notify"
+                                  name="FriendlyExpression">@[System::ServerExecutionID]</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Set SSISTrackId.Outputs[Sortie de colonne dérivée].Columns[Created_Dt]"
+                              dataType="date"
+                              errorOrTruncationOperation="Calcul"
+                              errorRowDisposition="FailComponent"
+                              lineageId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Set SSISTrackId.Outputs[Sortie de colonne dérivée].Columns[Created_Dt]"
+                              name="Created_Dt"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Expression de colonne dérivée"
+                                  name="Expression">@[System::CreationDate]</property>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Expression claire de colonne dérivée"
+                                  expressionType="Notify"
+                                  name="FriendlyExpression">@[System::CreationDate]</property>
+                              </properties>
+                            </outputColumn>
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Set SSISTrackId.Outputs[Sortie d'erreur de colonne dérivée]"
+                          description="Sortie d'erreur de la transformation de colonnes dérivées"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Sortie d'erreur de colonne dérivée"
+                          synchronousInputId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Set SSISTrackId.Inputs[Entrée de colonne dérivée]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Set SSISTrackId.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Set SSISTrackId.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Set SSISTrackId.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Set SSISTrackId.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB"
+                      componentClassID="Microsoft.OLEDBSource"
+                      contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+                      description="Source OLE DB"
+                      name="Source OLE DB"
+                      usesDispositions="true"
+                      version="7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                          name="OpenRowset">[HumanResources].[EmployeePayHistory]</property>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="Commande SQL à exécuter."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                        <property
+                          dataType="System.String"
+                          description="Variable contenant la commande SQL à exécuter."
+                          name="SqlCommandVariable"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie le mode utilisé pour accéder à la base de données."
+                          name="AccessMode"
+                          typeConverter="AccessMode">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Mappages entre les paramètres de la commande SQL et les variables."
+                          name="ParameterMapping"></property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Connections[OleDbConnection]"
+                          connectionManagerID="Package.ConnectionManagers[LAPTOP-NGENMBHI.AdventureWorks2014]"
+                          connectionManagerRefId="Package.ConnectionManagers[LAPTOP-NGENMBHI.AdventureWorks2014]"
+                          description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                          name="OleDbConnection" />
+                      </connections>
+                      <outputs>
+                        <output
+                          refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB]"
+                          name="Sortie de source OLE DB">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[ModifiedDate]"
+                              dataType="dbTimeStamp"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[ModifiedDate]"
+                              lineageId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[ModifiedDate]"
+                              name="ModifiedDate"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[BusinessEntityID]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[BusinessEntityID]"
+                              lineageId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[BusinessEntityID]"
+                              name="BusinessEntityID"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[RateChangeDate]"
+                              dataType="dbTimeStamp"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[RateChangeDate]"
+                              lineageId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[RateChangeDate]"
+                              name="RateChangeDate"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Rate]"
+                              dataType="cy"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[Rate]"
+                              lineageId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Rate]"
+                              name="Rate"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[PayFrequency]"
+                              dataType="ui1"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[PayFrequency]"
+                              lineageId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[PayFrequency]"
+                              name="PayFrequency"
+                              truncationRowDisposition="FailComponent" />
+                          </outputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[ModifiedDate]"
+                              dataType="dbTimeStamp"
+                              name="ModifiedDate" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[BusinessEntityID]"
+                              dataType="i4"
+                              name="BusinessEntityID" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[RateChangeDate]"
+                              dataType="dbTimeStamp"
+                              name="RateChangeDate" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[Rate]"
+                              dataType="cy"
+                              name="Rate" />
+                            <externalMetadataColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[PayFrequency]"
+                              dataType="ui1"
+                              name="PayFrequency" />
+                          </externalMetadataColumns>
+                        </output>
+                        <output
+                          refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB]"
+                          isErrorOut="true"
+                          name="Sortie d'erreur de source OLE DB">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[BusinessEntityID]"
+                              dataType="i4"
+                              lineageId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[BusinessEntityID]"
+                              name="BusinessEntityID" />
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[RateChangeDate]"
+                              dataType="dbTimeStamp"
+                              lineageId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[RateChangeDate]"
+                              name="RateChangeDate" />
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[Rate]"
+                              dataType="cy"
+                              lineageId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[Rate]"
+                              name="Rate" />
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[PayFrequency]"
+                              dataType="ui1"
+                              lineageId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[PayFrequency]"
+                              name="PayFrequency" />
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ModifiedDate]"
+                              dataType="dbTimeStamp"
+                              lineageId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ModifiedDate]"
+                              name="ModifiedDate" />
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                  </components>
+                  <paths>
+                    <path
+                      refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data.Paths[Sortie de colonne dérivée]"
+                      endId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+                      name="Sortie de colonne dérivée"
+                      startId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Set SSISTrackId.Outputs[Sortie de colonne dérivée]" />
+                    <path
+                      refId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data.Paths[Sortie de source OLE DB]"
+                      endId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Set SSISTrackId.Inputs[Entrée de colonne dérivée]"
+                      name="Sortie de source OLE DB"
+                      startId="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB.Outputs[Sortie de source OLE DB]" />
+                  </paths>
+                </pipeline>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\HR Schema\EmployeePayHistory\Truncate EmployeePayHistory Data"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Tâche d'exécution de requêtes SQL"
+              DTS:DTSID="{020E3A0E-FAD5-4221-9E98-D03610B21594}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Truncate EmployeePayHistory Data"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="2">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{EEEB2D9E-9E37-4708-B211-BA3193544A12}"
+                  SQLTask:SqlStatementSource="TRUNCATE TABLE [AWN_STG_Demo].[hr].[EmployeePayHistory]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\HR Schema\EmployeePayHistory.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{0E56A622-18D7-4FCB-8306-3E28200E88DE}"
+              DTS:From="Package\HR Schema\EmployeePayHistory\Truncate EmployeePayHistory Data"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="176,42"
+          Id="Package\HR Schema\Employee\Load Employee Data"
+          TopLeft="13.6666666666667,75.6666666666667" />
+        <NodeLayout
+          Size="195,42"
+          Id="Package\HR Schema\Employee\Truncate Employee Data"
+          TopLeft="4.11111111111111,6.66666666666674" />
+        <EdgeLayout
+          Id="Package\HR Schema\Employee.PrecedenceConstraints[Constraint]"
+          TopLeft="101.638888888889,48.6666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27"
+              Start="0,0"
+              End="0,19.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="236,133"
+          Size="236,176"
+          Id="Package\HR Schema\Employee"
+          TopLeft="33.4444444444445,39.7777777777781" />
+        <NodeLayout
+          Size="265,42"
+          Id="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data"
+          TopLeft="13.6666666666667,75.6666666666667" />
+        <NodeLayout
+          Size="284,42"
+          Id="Package\HR Schema\EmployeeDepartmentHistory\Truncate EmployeeDepartmentHistory Data"
+          TopLeft="4.11111111111111,6.66666666666674" />
+        <EdgeLayout
+          Id="Package\HR Schema\EmployeeDepartmentHistory.PrecedenceConstraints[Constraint]"
+          TopLeft="146.138888888889,48.6666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27"
+              Start="0,0"
+              End="0,19.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="293,173"
+          Size="293,216"
+          Id="Package\HR Schema\EmployeeDepartmentHistory"
+          TopLeft="289.888888888889,43" />
+        <NodeLayout
+          Size="226,42"
+          Id="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data"
+          TopLeft="13.6666666666667,75.6666666666667" />
+        <NodeLayout
+          Size="245,42"
+          Id="Package\HR Schema\EmployeePayHistory\Truncate EmployeePayHistory Data"
+          TopLeft="4.11111111111111,6.66666666666674" />
+        <EdgeLayout
+          Id="Package\HR Schema\EmployeePayHistory.PrecedenceConstraints[Constraint]"
+          TopLeft="126.638888888889,48.6666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27"
+              Start="0,0"
+              End="0,19.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="254,173"
+          Size="254,216"
+          Id="Package\HR Schema\EmployeePayHistory"
+          TopLeft="670.333333333333,39.666666666667" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="1023,264"
+          Size="1023,308"
+          Id="Package\HR Schema"
+          TopLeft="105.888888888889,18.9444444444439" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\HR Schema\Employee\Load Employee Data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="171,42"
+          Id="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB"
+          TopLeft="651,412" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\HR Schema\Employee\Load Employee Data\Set SSISTrackId"
+          TopLeft="630,282" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\HR Schema\Employee\Load Employee Data\Source OLE DB"
+          TopLeft="596,177" />
+        <EdgeLayout
+          Id="Package\HR Schema\Employee\Load Employee Data.Paths[Sortie de colonne dérivée]"
+          TopLeft="707.5,324">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="29,88"
+              Start="0,0"
+              End="29,80.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40"
+                    Point2="0,44"
+                    Point3="4,44" />
+                  <mssgle:LineSegment
+                    End="25,44" />
+                  <mssgle:CubicBezierSegment
+                    Point1="25,44"
+                    Point2="29,44"
+                    Point3="29,48" />
+                  <mssgle:LineSegment
+                    End="29,80.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\HR Schema\Employee\Load Employee Data.Paths[Sortie de source OLE DB]"
+          TopLeft="671,219">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="36.5,63"
+              Start="0,0"
+              End="36.5,55.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.5"
+                    Point2="0,31.5"
+                    Point3="4,31.5" />
+                  <mssgle:LineSegment
+                    End="32.5,31.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="32.5,31.5"
+                    Point2="36.5,31.5"
+                    Point3="36.5,35.5" />
+                  <mssgle:LineSegment
+                    End="36.5,55.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\HR Schema\Employee\Load Employee Data\Source OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\HR Schema\Employee\Load Employee Data\Destination OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="171,42"
+          Id="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB"
+          TopLeft="651,412" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Set SSISTrackId"
+          TopLeft="630,282" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB"
+          TopLeft="525,60" />
+        <EdgeLayout
+          Id="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data.Paths[Sortie de colonne dérivée]"
+          TopLeft="707.5,324">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="29,88"
+              Start="0,0"
+              End="29,80.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40"
+                    Point2="0,44"
+                    Point3="4,44" />
+                  <mssgle:LineSegment
+                    End="25,44" />
+                  <mssgle:CubicBezierSegment
+                    Point1="25,44"
+                    Point2="29,44"
+                    Point3="29,48" />
+                  <mssgle:LineSegment
+                    End="29,80.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data.Paths[Sortie de source OLE DB]"
+          TopLeft="600,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="107.5,180"
+              Start="0,0"
+              End="107.5,172.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,86" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,86"
+                    Point2="0,90"
+                    Point3="4,90" />
+                  <mssgle:LineSegment
+                    End="103.5,90" />
+                  <mssgle:CubicBezierSegment
+                    Point1="103.5,90"
+                    Point2="107.5,90"
+                    Point3="107.5,94" />
+                  <mssgle:LineSegment
+                    End="107.5,172.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Source OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\HR Schema\EmployeeDepartmentHistory\Load EmployeeDepartmentHistory Data\Destination OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="171,42"
+          Id="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Destination OLE DB"
+          TopLeft="651,412" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Set SSISTrackId"
+          TopLeft="630,282" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB"
+          TopLeft="596,177" />
+        <EdgeLayout
+          Id="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data.Paths[Sortie de colonne dérivée]"
+          TopLeft="707.5,324">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="29,88"
+              Start="0,0"
+              End="29,80.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40"
+                    Point2="0,44"
+                    Point3="4,44" />
+                  <mssgle:LineSegment
+                    End="25,44" />
+                  <mssgle:CubicBezierSegment
+                    Point1="25,44"
+                    Point2="29,44"
+                    Point3="29,48" />
+                  <mssgle:LineSegment
+                    End="29,80.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data.Paths[Sortie de source OLE DB]"
+          TopLeft="671,219">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="36.5,63"
+              Start="0,0"
+              End="36.5,55.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.5"
+                    Point2="0,31.5"
+                    Point3="4,31.5" />
+                  <mssgle:LineSegment
+                    End="32.5,31.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="32.5,31.5"
+                    Point2="36.5,31.5"
+                    Point3="36.5,35.5" />
+                  <mssgle:LineSegment
+                    End="36.5,55.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Source OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\HR Schema\EmployeePayHistory\Load EmployeePayHistory Data\Destination OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
