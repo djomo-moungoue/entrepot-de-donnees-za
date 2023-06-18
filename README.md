@@ -246,10 +246,64 @@ FactInternetSales (FactResellerSales) 2
 ### Créons le schéma l'entrepôt de données
 ![ngenmbhi datawarehousing demo](images/ngenmbhi_datawarehousing_demo.PNG)
 
-### Migrons les données dans la base de données de zone de transit
+### Migrons les données de la base de données source vers la base de données de zone de transit
 ![](images/SSIS_ERP_Incremental_Staging.png)
 ![](images/SSIS_ERP_Full_Staging.png)
 ![](images/SSIS_HR_Full_Staging.png)
+
+### Créons le Schéma étoile de l'entrepôt de données
+![](images/entrepot_de_donnees_schema_etoile.PNG)
+
+### Migrons les données de la base de données de zone de transit vers la de données de l'entrepôt de données
+ 
+Deux cas peuvent se présenter à cette étape. Si les bases de données de la zone de transit et l'entrepôt de données se trouvent sur le même server nous pourrions aussi utiliser des procédures stockées (store procedure) pour alimenter pour alimenter notre entrepôt avec des nouveaux données. Cependant si ces derniers sont sur différents serveurs nous allons utiliser SSIS pour effectuer la migration des données.
+Nous allons commencer par l'alimenter avec les données des tables de dimmention parce qu'elles sont référencées par les tables de fait comme nous pouvons le constater sur le schéma en étoile précédent.
+
+Pour migrer les données de la table [AWN_STG_Demo][erp].[Currency] vers la table [AWN_DW_Demo][dbo].[DimCurrency] par exemple, nous allons implémenté la procédure stockée suivant dans le premier cas.
+~~~sql
+/*
+Mettre à jour la base de données en
+1) en ajoutant les données supplémentaires de la zone de transit s'il y en a
+2) et en actualisant les noms de monnaie qui ont été modifiée dans la zone de transit
+*/
+CREATE PROCEDURE [dbo].[refresh_DimCurrency]
+AS
+BEGIN
+SET NOCOUNT ON
+-- 1)
+INSERT INTO [AWN_DW_Demo].[dbo].[DimCurrency]
+(
+[CurrencyAlternateKey]
+,[CurrencyName]
+)
+SELECT
+[CurrencyCode]
+,[Name]
+FROM [AWN_STG_Demo].[erp].[Currency] stg (NOLOCK)
+LEFT JOIN [AWN_DW_Demo].[dbo].[DimCurrency] dw (NOLOCK)
+ON stg.CurrencyCode = dw.CurrencyAlternateKey
+WHERE dw.CurrencyAlternateKey IS NULL
+-- 2)
+UPDATE dw
+SET [CurrencyName] = [Name]
+FROM [AWN_DW_Demo].[dbo].[DimCurrency] dw (NOLOCK)
+INNER JOIN [AWN_STG_Demo].[erp].[Currency] stg (NOLOCK)
+ON stg.CurrencyCode = dw.CurrencyAlternateKey
+WHERE [CurrencyName] <> [Name]
+
+SET NOCOUNT OFF
+END
+~~~
+
+Dans le deuxième cas,  nous suivrons les étapes SSIS suivantes dans Microosoft Visual Studio contenant SSDT.
+- Créer une connexion à notre base de données source [AWN_STG_Demo]
+- Créer une connexion à notre base de données de destination [AWN_DW_Demo]
+- Créer une tâche de requête SQL pour vider notre table de destionation avant chaque processus de migration
+- Créer un flux de données qui aura notre table [AWN_STG_Demo][erp].[Currency] en entrée et la table [AWN_DW_Demo][dbo].[DimCurrency] en sortie
+- Nous allons configuré les 2 noeux de notre flux afin que correspondre chaque attribut de la table d'entrée à un attribut adéquat dans la table de sortie
+- Nous allons exécuté notre tâche de migration
+
+
 
 ## Analysons les données (SSAS)
 ## Planifions les tâches (Power BI)
