@@ -55,8 +55,22 @@ Sommaire
 
 ## Les notions fondamentales
 
+Quelle est la difference entre une base de donnees et un entrepot de donnees?
+
+Tandis qu'une `base de donnees` est plus appropriee pour le traitement des transactions en ligne (OLTP) car: 
+- elle a une structure hautemnent normalisees afin d'accelerer les transaction,
+- ses donnees sont non validees et non normalisees,
+- elle ne peut pas sauvegarder ou traiter les donnees historiques,
+- elle a un indexage minimal pour acceler la modification des donnees lors des transactions
+
+Un `entrepot de donnees` est optimise pour le traitement analytique en ligne (OLAP) car:
+- il a une structure denormalisees afin d'accelerer les requetes,
+- ses donnees sont validees et normalisees,
+- il peut sauvegarder les donnees historiques,
+- il a un indexage maximal pour acceler la lecture des donnees lors des requetes
+
 Qu'est ce qu'entrepôt de données?
-- Un `entrepôt de données - Data Warehouse (DW)` est un dépôt central de données intégrées provenant d'une ou de plusieurs sources hétéogènes. C'est un composant essentiel d'intelligence économique qui est utilisé pour créer des rapports et analyser les données.
+- Un `entrepôt de données - Data Warehouse (DW)` est un dépôt central de données intégrées provenant d'une ou de plusieurs sources hétéogènes (CRM, ERP, Excel, Website). C'est un composant essentiel d'intelligence économique qui est utilisé pour créer des rapports et analyser les données. 
 - L'`intelligence économique - Business Intelligence (BI)`est à son tour l'ensemble des stratégies et technologies utilisées par les entreprises pour analyser les données concernant leurs affaires. Les entrepôts de données permettent d'implémenter les solutions pour d'intelligence économique.
 
 Pourquoi avons nous besoins d'un entrepôt de données?
