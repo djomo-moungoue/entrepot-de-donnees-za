@@ -323,4 +323,20 @@ Dans le deuxième cas,  nous suivrons les étapes SSIS suivantes dans Microosoft
 ## Planifions les tâches (Power BI)
 ## Clôturons notre projet
 
+# Depannage des erreurs
+
+## Probleme: Git push from Visual Studio Code
+~~~sh
+$ git push
+remote: No anonymous write access.
+fatal: Authentication failed for 'https://github.com/djomo-moungoue/entrepot-de-donnees-za.git/'
+~~~
+
+## Solution
+Une méthode plus simple consiste à utiliser des jetons d'accès personnels sur GitHub. Cette fonctionnalité peut être configurée en allant dans votre compte GitHub → Paramètres → Paramètres du développeur → Jetons d'accès personnels → Générer un jeton d'accès personnel. Faites vos sélections de contrôle d'accès, générez, puis copiez et enregistrez votre nouveau jeton. Après cela, allez dans le répertoire de votre projet Git et entrez dans le terminal :
+~~~sh
+git remote set-url origin https://YOUR_TOKEN_HERE@github.com/your_user/your_project.git
+~~~
+source: https://stackoverflow.com/questions/60757334/git-push-from-visual-studio-code-no-anonymous-write-access-authentication-fai
+
 
